@@ -1,4 +1,3 @@
-
 import { StatusCodes } from 'http-status-codes';
 
 import { getMessagesService } from '../services/messageService.js';
@@ -15,7 +14,8 @@ export const getMessages = async (req, res) => {
         channelId: req.params.channelId
       },
       req.query.page || 1,
-      req.query.limit || 20
+      req.query.limit || 20,
+      req.user
     );
 
     return res
