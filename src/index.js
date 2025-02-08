@@ -1,3 +1,4 @@
+
 import cors from 'cors';
 import express from 'express';
 import { createServer } from 'http';
@@ -9,6 +10,7 @@ import connectDB from './config/dbConfig.js';
 import { PORT } from './config/serverConfig.js';
 import ChannelSocketHandlers from './controllers/channelSocketController.js';
 import MessageSocketHandlers from './controllers/messageSocketController.js';
+import { verifyEmailController } from './controllers/workspaceController.js';
 import apiRouter from './routes/apiRoutes.js';
 
 const app = express();
@@ -23,6 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/ui', bullServerAdapter.getRouter());
 
 app.use('/api', apiRouter);
+
+app.get('/verify/:token', verifyEmailController);
 
 app.get('/ping', (req, res) => {
   return res.status(StatusCodes.OK).json({ message: 'pong' });
