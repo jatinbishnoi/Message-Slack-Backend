@@ -1,4 +1,3 @@
-
 import express from 'express';
 
 import {
@@ -9,6 +8,7 @@ import {
   getWorkspaceByJoinCodeController,
   getWorkspaceController,
   getWorkspacesUserIsMemberOfController,
+  joinWorkspaceController,
   resetJoinCodeController,
   updateWorkspaceController
 } from '../../controllers/workspaceController.js';
@@ -40,6 +40,8 @@ router.get(
   isAuthenticated,
   getWorkspaceByJoinCodeController
 );
+
+router.put('/:workspaceId/join', isAuthenticated, joinWorkspaceController);
 
 router.put('/:workspaceId', isAuthenticated, updateWorkspaceController);
 

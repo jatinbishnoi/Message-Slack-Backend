@@ -328,8 +328,7 @@ export const addChannelToWorkspaceService = async (
 
 export const joinWorkspaceService = async (workspaceId, joinCode, userId) => {
   try {
-    const workspace =
-      await workspaceRepository.getWorkspaceDetailsById(workspaceId);
+    const workspace = await workspaceRepository.getWorkspaceDetailsById(workspaceId);
     if (!workspace) {
       throw new ClientError({
         explanation: 'Invalid data sent from the client',
